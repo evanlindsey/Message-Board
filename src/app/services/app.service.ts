@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AppService {
@@ -92,7 +93,7 @@ export class AppService {
 
   getUser() {
     this.isLoading.emit(true);
-    this.http.get(this.AUTH_URL + '/me', this.tokenHeader).map(res => res.json()).subscribe(res => {
+    this.http.get(this.AUTH_URL + '/me', this.tokenHeader).pipe(map(res => res.json())).subscribe(res => {
       this.isLoading.emit(false);
       this.user.firstName = res.firstName;
       this.user.lastName = res.lastName;
@@ -103,7 +104,7 @@ export class AppService {
 
   updateUser() {
     this.isLoading.emit(true);
-    this.http.put(this.AUTH_URL + '/update', this.user, this.tokenHeader).map(res => res.json()).subscribe(res => {
+    this.http.put(this.AUTH_URL + '/update', this.user, this.tokenHeader).pipe(map(res => res.json())).subscribe(res => {
       this.isLoading.emit(false);
       if (typeof window !== 'undefined') {
         localStorage.setItem(this.NAME_KEY, res.firstName);

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { NavComponent } from './nav/nav.component';
 
-import { AppService } from './shared/app.service';
-import { MsgService } from './shared/msg.service';
+import { AppService } from './services/app.service';
+import { MsgService } from './services/msg.service';
 
 @Component({
   selector: 'app-root',

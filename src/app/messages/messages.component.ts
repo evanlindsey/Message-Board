@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MsgService } from '../shared/msg.service';
+import { MsgService } from '../services/msg.service';
 
 @Component({
   selector: 'app-messages',
@@ -8,9 +8,9 @@ import { MsgService } from '../shared/msg.service';
     <mat-card class="card">
       <h1>Messages</h1>
       <mat-card-content>
-        <mat-input-container>
+        <mat-form-field>
           <textarea [(ngModel)]="msg.message.text" matInput placeholder="Message"></textarea>
-        </mat-input-container>
+        </mat-form-field>
         <mat-card-actions>
           <button (click)="postMessage()" mat-button color="primary">POST</button>
         </mat-card-actions>

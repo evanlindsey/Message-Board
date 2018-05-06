@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { AppService } from '../shared/app.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-register',

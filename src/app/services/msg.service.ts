@@ -2,9 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs';
 
 import { HubService } from './hub.service';
 

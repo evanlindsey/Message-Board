@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AppService } from '../shared/app.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +8,7 @@ import { AppService } from '../shared/app.service';
     <mat-toolbar color="primary">
       <button mat-button routerLink="/">Home</button>
       <button mat-button routerLink="/messages">Messages</button>
-      <a href="https://github.com/evanlindsey/Core-Angular-Message-Board" mat-button>GitHub</a>
+      <a href="https://github.com/evanlindsey/Message-Board" mat-button>GitHub</a>
       <span style="flex: 1 1 auto;"></span>
       <button *ngIf="!app.isAuthenticated" mat-button routerLink="/login">Login</button>
       <button *ngIf="!app.isAuthenticated" mat-button routerLink="/register">Register</button>

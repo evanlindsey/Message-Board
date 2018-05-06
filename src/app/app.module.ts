@@ -26,10 +26,10 @@ import { UserComponent } from './user/user.component';
 import { MessagesComponent } from './messages/messages.component';
 
 // Services
-import { AppService } from './shared/app.service';
-import { MsgService } from './shared/msg.service';
-import { HubService } from './shared/hub.service';
-import { AuthGuardService as AuthGuard } from './shared/auth-guard.service';
+import { AppService } from './services/app.service';
+import { MsgService } from './services/msg.service';
+import { HubService } from './services/hub.service';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 // Router
 const routes = [{
