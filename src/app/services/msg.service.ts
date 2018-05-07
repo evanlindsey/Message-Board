@@ -31,22 +31,17 @@ export class MsgService {
 
   private handleError(error) {
     this.isLoading.emit(false);
-    if (typeof window !== 'undefined') {
-      this.sb.open(error, 'close');
-    }
+    this.sb.open(error, 'close');
   }
 
   get tokenHeader() {
     let header = new Headers;
-    if (typeof window !== 'undefined') {
-      header = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') });
-    }
+    header = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') });
     return new RequestOptions({ headers: header });
   }
 
   getMessages() {
     this.hub.setConnection();
-
     this.isLoading.emit(true);
     this.http.get(this.MESSAGE_URL, this.tokenHeader).subscribe(response => {
       this.isLoading.emit(false);

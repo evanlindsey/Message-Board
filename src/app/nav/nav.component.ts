@@ -5,10 +5,10 @@ import { AppService } from '../services/app.service';
 @Component({
   selector: 'app-nav',
   template: `
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button mat-button routerLink="/">Home</button>
       <button mat-button routerLink="/messages">Messages</button>
-      <a href="https://github.com/evanlindsey/Message-Board" mat-button>GitHub</a>
+      <a mat-button href="https://github.com/evanlindsey/Message-Board" target="_blank">GitHub</a>
       <span style="flex: 1 1 auto;"></span>
       <button *ngIf="!app.isAuthenticated" mat-button routerLink="/login">Login</button>
       <button *ngIf="!app.isAuthenticated" mat-button routerLink="/register">Register</button>

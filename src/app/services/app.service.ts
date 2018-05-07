@@ -23,33 +23,21 @@ export class AppService {
 
   private handleError(error) {
     this.isLoading.emit(false);
-    if (typeof window !== 'undefined') {
-      this.sb.open(error, 'close');
-    }
+    this.sb.open(error, 'close');
   }
 
   get tokenHeader() {
     let header = new Headers;
-    if (typeof window !== 'undefined') {
-      header = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY) });
-    }
+    header = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY) });
     return new RequestOptions({ headers: header });
   }
 
   get name() {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem(this.NAME_KEY);
-    } else {
-      return null;
-    }
+    return localStorage.getItem(this.NAME_KEY);
   }
 
   get isAuthenticated() {
-    if (typeof window !== 'undefined') {
-      return !!localStorage.getItem(this.TOKEN_KEY);
-    } else {
-      return null;
-    }
+    return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
   private authenticate(res) {
@@ -57,10 +45,8 @@ export class AppService {
     if (!authResponse.token) {
       return;
     }
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(this.TOKEN_KEY, authResponse.token);
-      localStorage.setItem(this.NAME_KEY, authResponse.firstName);
-    }
+    localStorage.setItem(this.TOKEN_KEY, authResponse.token);
+    localStorage.setItem(this.NAME_KEY, authResponse.firstName);
     this.router.navigate(['/']);
   }
 
@@ -84,10 +70,8 @@ export class AppService {
   }
 
   logout() {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem(this.TOKEN_KEY);
-      localStorage.removeItem(this.NAME_KEY);
-    }
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.NAME_KEY);
     this.router.navigate(['/']);
   }
 
@@ -106,12 +90,17 @@ export class AppService {
     this.isLoading.emit(true);
     this.http.put(this.AUTH_URL + '/update', this.user, this.tokenHeader).pipe(map(res => res.json())).subscribe(res => {
       this.isLoading.emit(false);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem(this.NAME_KEY, res.firstName);
-      }
+      localStorage.setItem(this.NAME_KEY, res.firstName);
     }, error => {
       this.handleError(error.statusText);
     });
+  }
+
+  emailValid() {
+    return control => {
+      const regex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      return regex.test(control.value) ? null : { invalidEmail: true };
+    };
   }
 
 }

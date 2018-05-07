@@ -9,13 +9,16 @@ import { AppService } from '../services/app.service';
     <mat-card>
       <h1>Login</h1>
       <form [formGroup]="form" (ngSubmit)="onLogin()">
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="userName" type="email">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password" type="password">
-        </mat-form-field>
-        <button mat-raised-button [disabled]="!form.valid" color="primary">Login</button>
+        <div class="field-container">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="userName" type="email">
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password">
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="!form.valid">Login</button>
+        </div>
       </form>
     </mat-card>
   `
@@ -26,7 +29,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, public app: AppService) {
     this.form = fb.group({
-      userName: ['', [Validators.required, emailValid()]],
+      userName: ['', [Validators.required, app.emailValid()]],
       password: ['', Validators.required]
     });
   }
@@ -37,11 +40,4 @@ export class LoginComponent {
     }
   }
 
-}
-
-function emailValid() {
-  return control => {
-    const regex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    return regex.test(control.value) ? null : { invalidEmail: true };
-  };
 }

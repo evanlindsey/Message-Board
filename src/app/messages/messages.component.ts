@@ -8,15 +8,16 @@ import { MsgService } from '../services/msg.service';
     <mat-card class="card">
       <h1>Messages</h1>
       <mat-card-content>
-        <mat-form-field>
-          <textarea [(ngModel)]="msg.message.text" matInput placeholder="Message"></textarea>
-        </mat-form-field>
-        <mat-card-actions>
-          <button (click)="postMessage()" mat-button color="primary">POST</button>
-        </mat-card-actions>
+        <div class="field-container">
+          <mat-form-field>
+            <textarea [(ngModel)]="msg.message.text" matInput placeholder="Message"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="postMessage()">POST</button>
+        </div>
       </mat-card-content>
     </mat-card>
     <div *ngFor="let message of msg.messages | async">
+      <br />
       <mat-card class="card">
         <mat-card-title>{{message.user}}</mat-card-title>
         <mat-card-content>{{message.text}}</mat-card-content>

@@ -4,9 +4,18 @@ import { Component } from '@angular/core';
   selector: 'app-home',
   template: `
     <mat-card>
-      <h1 class="title">Core-Angular-Message-Board</h1>
-      <img src="https://images.pexels.com/photos/317353/pexels-photo-317353.jpeg?fit=crop&w=640&h=423">
+      <div id="home"></div>
     </mat-card>
-  `
+  `,
+  styles: [`
+    #home {
+      width: 100%;
+      height: 90vh;
+      background: url('https://images.pexels.com/photos/7067/notes-clean-hero-minimal.jpg?w=1280&h=853/');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: contain;
+    }
+  `]
 })
 export class HomeComponent { }
