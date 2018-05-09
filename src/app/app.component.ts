@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { NavComponent } from './nav/nav.component';
 
-import { AppService } from './services/app.service';
 import { MsgService } from './services/msg.service';
 
 @Component({
@@ -19,10 +18,9 @@ export class AppComponent implements OnInit {
 
   loading = false;
 
-  constructor(private app: AppService, private msg: MsgService) { }
+  constructor(private msg: MsgService) { }
 
   ngOnInit() {
-    this.app.isLoading.subscribe((state) => this.loading = state);
     this.msg.isLoading.subscribe((state) => this.loading = state);
   }
 
