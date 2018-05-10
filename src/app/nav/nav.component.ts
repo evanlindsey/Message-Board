@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 import { AuthGuardService } from '../services/auth-guard.service';
 
@@ -20,7 +21,7 @@ import { AuthGuardService } from '../services/auth-guard.service';
 })
 export class NavComponent {
 
-  AUTH_URL = 'https://evanlindsey.net/evanlindsey-auth/';
+  AUTH_URL = environment.base_url + environment.auth_app;
 
   constructor(public auth: AuthGuardService) { }
 
