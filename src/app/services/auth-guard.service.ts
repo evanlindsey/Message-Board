@@ -22,7 +22,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate() {
     if (!this.isAuthenticated) {
-      window.location.replace(this.AUTH_URL + '/login');
+      window.location.assign(this.AUTH_URL + '/login');
       return false;
     }
     return true;
