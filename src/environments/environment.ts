@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   api_url: 'http://localhost:5000/',
   base_url: 'http://localhost:4200/',
-  auth_app: 'evanlindsey-auth'
+  auth_app: 'Auth'
 };
 
 /*
